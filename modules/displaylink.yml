@@ -1,0 +1,38 @@
+name: displaylink
+type: shell
+commands:
+    # Install kernel headers, DKMS, and EVDI from Debian repos
+  - apt-get install -y \
+      dkms \
+      linux-headers-amd64 \
+      evdi-dkms \
+      libdrm2 \
+      libdrm-dev \
+      libelf-dev \
+      libssl-dev
+
+    # Get the kernel version from the installed headers
+    # (there's no running kernel in a container build, but headers tell us the version)
+  - KVER=$(ls /lib/modules/ | sort -V | tail -1) && echo "Building for kernel: $KVER"
+
+    # Build the evdi DKMS module against the installed headers
+  - KVER=$(ls /lib/modules/ | sort -V | tail -1) && \
+    EVDI_VER=$(dkms status | grep evdi | head -1 | awk -F'[/, ]' '{print $2}') && \
+    dkms build evdi/$EVDI_VER -k $KVER && \
+    dkms install evdi/$EVDI_VER -k $KVER
+
+    # Copy the DisplayLink run installer into the image
+    # (this file must exist in your repo at files/displaylink-driver.run)
+  - COPY files/displaylink-driver.run /tmp/displaylink-driver.run
+
+    # Make executable and run the installer (non-interactive, no DKMS rebuild — we already did it)
+  - chmod +x /tmp/displaylink-driver.run
+  - /tmp/displaylink-driver.run --nox11 --noexec --target /tmp/displaylink-extract
+  - cd /tmp/displaylink-extract && ./displaylink-installer.sh
+
+    # Enable the DisplayLink service
+  - systemctl enable displaylink-driver
+
+    # Cleanup
+  - rm -rf /tmp/displaylink-extract /tmp/displaylink-driver.run
+  - apt-get clean
