@@ -16,9 +16,9 @@ stages:
   runs:
     commands:
       - echo 'APT::Install-Recommends "1";' > /etc/apt/apt.conf.d/01norecommends
-  adds:
-  - src: files/displaylink-driver.run
-    dst: /tmp/displaylink-driver.run
+#  adds:
+#  - src: files/displaylink-driver.run
+#    dst: /tmp/displaylink-driver.run
     
   modules:
   - name: init-setup
