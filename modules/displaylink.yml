@@ -2,6 +2,7 @@ name: displaylink
 type: shell
 commands:
   - |
+    apt-get update && apt-get install git && \
     git clone https://github.com/AdnanHodzic/displaylink-debian.git /tmp/displaylink-debian && \
     mv /usr/bin/lspci /tmp/lspci && \
     echo 'echo "00:02.0 VGA compatible controller: Intel Corporation"' > /usr/bin/lspci && \
