@@ -8,7 +8,7 @@ stages:
   addincludes: true
   singlelayer: false
   labels:
-    maintainer: self-maintained # Optionally, Replace this with your name
+    maintainer: kurimanju-dev # Optionally, Replace this with your name
   args:
     DEBIAN_FRONTEND: noninteractive # Set the image environment as non-interactive
 
@@ -16,7 +16,10 @@ stages:
   runs:
     commands:
       - echo 'APT::Install-Recommends "1";' > /etc/apt/apt.conf.d/01norecommends
-
+  adds:
+  - src: files/displaylink-driver.run
+    dst: /tmp/displaylink-driver.run
+    
   modules:
   - name: init-setup
     type: shell
@@ -48,6 +51,7 @@ stages:
     type: includes
     includes:
       - modules/tailscale.yml
+      - modules/displaylink.yml
   
   # Put your custom actions above this comment
 

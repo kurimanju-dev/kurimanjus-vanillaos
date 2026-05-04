@@ -21,10 +21,6 @@ commands:
     dkms build evdi/$EVDI_VER -k $KVER && \
     dkms install evdi/$EVDI_VER -k $KVER
 
-    # Copy the DisplayLink run installer into the image
-    # (this file must exist in your repo at files/displaylink-driver.run)
-  - COPY files/displaylink-driver.run /tmp/displaylink-driver.run
-
     # Make executable and run the installer (non-interactive, no DKMS rebuild — we already did it)
   - chmod +x /tmp/displaylink-driver.run
   - /tmp/displaylink-driver.run --nox11 --noexec --target /tmp/displaylink-extract
