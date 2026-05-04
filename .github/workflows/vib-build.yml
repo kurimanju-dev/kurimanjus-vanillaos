@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
 
 env:
-  CUSTOM_IMAGE_NAME: ghcr.io/kurimanju-dev/kurimanjus-vanillaos
+  CUSTOM_IMAGE_NAME: kurimanjus-vanillaos
   BUILDX_NO_DEFAULT_ATTESTATIONS: 1
 
 jobs:
