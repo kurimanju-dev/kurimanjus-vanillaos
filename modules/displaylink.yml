@@ -6,13 +6,12 @@ commands:
   # 2. Clone the repo
   - git clone https://github.com/AdnanHodzic/displaylink-debian.git /tmp/displaylink-debian
   
-  - |
-    cd /tmp/displaylink-debian
+  - cd /tmp/displaylink-debian
     # Mocking lspci to prevent it from crashing the script (hopefully)
-    echo -e '#!/bin/sh\necho "00:02.0 VGA compatible controller: Intel Corporation"' > /usr/local/bin/lspci
-    chmod +x /usr/local/bin/lspci
+  - echo -e '#!/bin/sh\necho "00:02.0 VGA compatible controller: Intel Corporation"' > /usr/local/bin/lspci
+  - chmod +x /usr/local/bin/lspci
     
-    ./displaylink-debian.sh --install --noconfirm || echo "Ignoring expected post-install trigger failures"
+  - ./displaylink-debian.sh --install --noconfirm || echo "Ignoring expected post-install trigger failures"
 
   - systemctl enable displaylink-driver
   
