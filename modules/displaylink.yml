@@ -1,12 +1,12 @@
-- name: displaylink
-  type: shell
-  commands:
-    - apt-get install -y git dkms linux-headers-amd64 libdrm2
+name: displaylink
+type: shell
+commands:
+  - apt-get install -y git dkms linux-headers-amd64 libdrm2
 
-    - git clone https://github.com/AdnanHodzic/displaylink-debian.git /tmp/displaylink-debian
+  - git clone https://github.com/AdnanHodzic/displaylink-debian.git /tmp/displaylink-debian
 
-    - cd /tmp/displaylink-debian && bash displaylink-debian.sh --noconfirm
+  - cd /tmp/displaylink-debian && bash displaylink-debian.sh --noconfirm
 
-    - systemctl enable displaylink-driver
-    - rm -rf /tmp/displaylink-debian
-    - apt-get clean
+  - systemctl enable displaylink-driver
+  - rm -rf /tmp/displaylink-debian
+  - apt-get clean
