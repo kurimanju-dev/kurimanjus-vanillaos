@@ -8,7 +8,9 @@ commands:
   - cd /tmp/displaylink-debian
   - mv /usr/bin/lspci /tmp/lspci
     # Mocking lspci to prevent it from crashing the script (hopefully)
-  - echo -e "echo '00:02.0 VGA compatible controller: Intel Corporation'" > /usr/bin/lspci
+  - |
+    echo -e "echo '00:02.0 VGA compatible controller: Intel Corporation'" > /usr/bin/lspci
+    
   - chmod +x /usr/bin/lspci
     
   - ./displaylink-debian.sh --install --noconfirm || echo "Ignoring expected post-install trigger failures"
