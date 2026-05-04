@@ -1,8 +1,6 @@
 name: displaylink
 type: shell
 commands:
-  - apt-get install -y git dkms linux-headers-amd64 libdrm2
-
   - git clone https://github.com/AdnanHodzic/displaylink-debian.git /tmp/displaylink-debian
 
   - cd /tmp/displaylink-debian && bash displaylink-debian.sh --noconfirm

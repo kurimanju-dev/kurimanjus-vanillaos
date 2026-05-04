@@ -1,4 +1,4 @@
-name: Custom Vanilla Desktop # Replace this name with your image name
+name: Kurimanjus Tailscale and Displaylink VanillaOS Image # Replace this name with your image name
 id: custom # Replace this ID with your image ID
 vibversion: 1.0.7
 
