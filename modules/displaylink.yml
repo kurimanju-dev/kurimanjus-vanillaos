@@ -12,6 +12,5 @@ commands:
     /opt/displaylink-driver.run --nox11 --noexec --target /opt/displaylink-extract && \
     PATH=/usr/local/bin:$PATH SYSTEMINITDAEMON=systemd bash /opt/displaylink-extract/displaylink-installer.sh && \
     rm -f /usr/local/bin/uname && \
-    systemctl enable displaylink-driver && \
     rm -rf /opt/displaylink-extract /opt/displaylink-driver.run && \
     apt-get clean
