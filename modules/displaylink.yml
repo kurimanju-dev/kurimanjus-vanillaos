@@ -1,20 +1,20 @@
 name: displaylink
 type: shell
 commands:
-    - apt-get install -y dkms linux-headers-amd64 evdi-dkms libdrm2 libdrm-dev libelf-dev libssl-dev
+  - apt-get install -y dkms linux-headers-amd64 evdi-dkms libdrm2 libdrm-dev libelf-dev libssl-dev
 
-    - |
-      KVER=$(ls /lib/modules/ | sort -V | tail -1)
-      EVDI_VER=$(dpkg-query -W -f='${Version}' evdi-dkms | cut -d- -f1)
-      echo "Building evdi $EVDI_VER for kernel $KVER"
-      dkms build evdi/$EVDI_VER -k $KVER
-      dkms install evdi/$EVDI_VER -k $KVER
+  - |
+    KVER=$(ls /lib/modules/ | sort -V | tail -1) && \
+    EVDI_VER=$(dpkg-query -W -f='${Version}' evdi-dkms | cut -d- -f1) && \
+    echo "Building evdi $EVDI_VER for kernel $KVER" && \
+    dkms build evdi/$EVDI_VER -k $KVER && \
+    dkms install evdi/$EVDI_VER -k $KVER
 
-    - chmod +x /tmp/displaylink-driver.run
-    - /tmp/displaylink-driver.run --nox11 --noexec --target /tmp/displaylink-extract || true
-    - bash /tmp/displaylink-extract/displaylink-installer.sh
+  - chmod +x /tmp/displaylink-driver.run
+  - /tmp/displaylink-driver.run --nox11 --noexec --target /tmp/displaylink-extract || true
+  - bash /tmp/displaylink-extract/displaylink-installer.sh
 
-    - systemctl enable displaylink-driver
+  - systemctl enable displaylink-driver
 
-    - rm -rf /tmp/displaylink-extract /tmp/displaylink-driver.run
-    - apt-get clean
+  - rm -rf /tmp/displaylink-extract /tmp/displaylink-driver.run
+  - apt-get clean
