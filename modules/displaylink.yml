@@ -2,19 +2,15 @@ name: displaylink
 type: shell
 commands:
   - |
-    apt-get install -y dkms linux-headers-amd64 evdi-dkms libdrm2 libdrm-dev libelf-dev libssl-dev
-  - |
+    apt-get install -y dkms linux-headers-amd64 evdi-dkms libdrm2 libdrm-dev libelf-dev libssl-dev && \
     KVER=$(ls /lib/modules/ | grep -v azure | sort -V | tail -1) && \
     echo "Target kernel: $KVER" && \
     echo '#!/bin/sh' > /usr/local/bin/uname && \
     echo "if [ \"\$1\" = \"-r\" ]; then echo $KVER; else /bin/uname \"\$@\"; fi" >> /usr/local/bin/uname && \
-    chmod +x /usr/local/bin/uname
-  - |
+    chmod +x /usr/local/bin/uname && \
     chmod +x /opt/displaylink-driver.run && \
-    /opt/displaylink-driver.run --nox11 --noexec --target /opt/displaylink-extract
-  - |
-    PATH=/usr/local/bin:$PATH SYSTEMINITDAEMON=systemd bash /opt/displaylink-extract/displaylink-installer.sh
-  - |
+    /opt/displaylink-driver.run --nox11 --noexec --target /opt/displaylink-extract && \
+    PATH=/usr/local/bin:$PATH SYSTEMINITDAEMON=systemd bash /opt/displaylink-extract/displaylink-installer.sh && \
     rm -f /usr/local/bin/uname && \
     systemctl enable displaylink-driver && \
     rm -rf /opt/displaylink-extract /opt/displaylink-driver.run && \
