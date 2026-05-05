@@ -12,10 +12,6 @@ stages:
   args:
     DEBIAN_FRONTEND: noninteractive # Set the image environment as non-interactive
   
-  adds:
-  - src: files/displaylink-driver.run
-    dst: /tmp/displaylink-driver.run
-
   # Commands to run first before building the modules
   runs:
     commands:
