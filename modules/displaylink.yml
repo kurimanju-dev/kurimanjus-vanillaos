@@ -5,7 +5,7 @@ commands:
     apt-get install -y dkms linux-headers-amd64 evdi-dkms libdrm2 libdrm-dev libelf-dev libssl-dev && \
     chmod +x /opt/displaylink-driver.run && \
     (/opt/displaylink-driver.run --nox11 --noexec --target /opt/displaylink-extract || true) && \
-    bash /opt/displaylink-extract/displaylink-installer.sh && \
+    SYSTEMINITDAEMON=systemd bash /opt/displaylink/displaylink-extract/displaylink-installer.sh && \
     systemctl enable displaylink-driver && \
     rm -rf /opt/displaylink-extract /opt/displaylink-driver.run && \
     apt-get clean
