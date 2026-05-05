@@ -3,9 +3,9 @@ type: shell
 commands:
   - |
     apt-get install -y dkms linux-headers-amd64 evdi-dkms libdrm2 libdrm-dev libelf-dev libssl-dev && \
-    chmod +x /tmp/displaylink-driver.run && \
-    (/tmp/displaylink-driver.run --nox11 --noexec --target /tmp/displaylink-extract || true) && \
-    bash /tmp/displaylink-extract/displaylink-installer.sh && \
+    chmod +x /opt/displaylink-driver.run && \
+    (/opt/displaylink-driver.run --nox11 --noexec --target /opt/displaylink-extract || true) && \
+    bash /opt/displaylink-extract/displaylink-installer.sh && \
     systemctl enable displaylink-driver && \
-    rm -rf /tmp/displaylink-extract /tmp/displaylink-driver.run && \
+    rm -rf /opt/displaylink-extract /opt/displaylink-driver.run && \
     apt-get clean
