@@ -2,7 +2,7 @@ name: displaylink
 type: shell
 commands:
   - |
-    apt-get install -y dkms linux-headers-amd64 evdi-dkms libdrm2 libdrm-dev libelf-dev libssl-dev && \
+    apt-get install -y dkms linux-headers-amd64 evdi-dkms libdrm2 libdrm-dev libelf-dev libssl-dev gpgv && \
     KVER=$(ls /lib/modules/ | grep -v azure | sort -V | tail -1) && \
     echo "Target kernel: $KVER" && \
     echo '#!/bin/sh' > /usr/local/bin/uname && \
