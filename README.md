@@ -1,6 +1,6 @@
-# Custom Vib Image (with Tailscale, Nvidia Version) 
+# Custom Vib Image (with Tailscale, Nvidia Version) - **UNTESTED!!**
 
-This custom image is based on the official VanillaOS Nvidia image and has Tailscale built in. Use the host shell to access the `tailscale` command.
+This custom image is based on the official VanillaOS Nvidia image and has Tailscale built in. Use the host shell to access the `tailscale` command. Note: Since I do not own a device with an Nvidia GPU, this image is completely untested.
 
 ## Use the custom image
 
