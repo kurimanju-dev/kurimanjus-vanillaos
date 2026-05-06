@@ -2,9 +2,7 @@ name: Vib Build
 
 on:
   push:
-    branches: 
-      - "main"
-      - "displaylink"
+    branches: [ "main" ]
     tags:
       - '*'
   schedule:
